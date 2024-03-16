@@ -13,6 +13,9 @@ body {
     font-family: Montez, sans-serif;
     font-weight: 700;
     text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     align-items: center;
     justify-content: center;
