@@ -7,6 +7,8 @@ const twittterButton = document.getElementById('twitter');
 const newQuoteButton = document.getElementById('new-quote')
 console.log(newQuoteButton);
 
+newQuoteButton.addEventListener('click', generateQuote)
+
 function generateQuote() {
     const newQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
     quoteText.textContent = newQuote.text;
