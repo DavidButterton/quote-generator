@@ -7,12 +7,23 @@ const twittterButton = document.getElementById('twitter');
 const newQuoteButton = document.getElementById('new-quote')
 console.log(newQuoteButton);
 
-newQuoteButton.addEventListener('click', generateQuote)
 
 function generateQuote() {
     const newQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
+    //check if author field is blank and replace it with 'unknown'
+    if(!newQuote.author) {
+        quoteAuthor.textContent = "unknown"
+    } else {
+        quoteAuthor.textContent = newQuote.author;
+    }
+    //check the quote length to determine styling
+    if(newQuote.text.length > 50) {
+        quoteText.classList.add('long-quote');
+    } else {
+        quoteText.classList.remove('long-quote');
+    }
     quoteText.textContent = newQuote.text;
-    quoteAuthor.textContent = newQuote.author;
+    
     console.log(newQuote)
 }
 
@@ -38,3 +49,12 @@ getQuotes();
 // }
 
 // newQuoteLocal();
+
+//to tweet a quote
+function tweetQuote() {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${quoteAuthor.textContent}`;
+    window.open(twitterUrl, '_blank');
+}
+
+twittterButton.addEventListener('click', tweetQuote);
+newQuoteButton.addEventListener('click', generateQuote);
